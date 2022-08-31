@@ -43,16 +43,19 @@ public class UnweightedGraph<V> implements Graph<V> {
     createAdjacencyLists(edges, numberOfVertices);
   }
 
-  public List<Integer> getACycle(){
+public List<Integer> getACycle(){
 	  List<Integer> allVertices = new ArrayList<>(); 
-	  for (int i = 0; i < allVertices.size(); i++)
+	  for (int i = 0; i < vertices.size(); i++) {
 		  allVertices.add(i); 
-	  boolean[] isVisited = new boolean[vertices.size()];
-	  for ( int i = 0; i < isVisited.length; i++)
+	  }
+	  boolean[] isVisited = new boolean[allVertices.size()];
+	  for ( int i = 0; i < isVisited.length; i++) {
 		  isVisited[i] = false; 
+	  }
 	  int[] parent = new int[allVertices.size()]; 
-	  for (int i = 0; i < parent.length; i++)
+	  for (int i = 0; i < parent.length; i++) {
 		  parent[i] = -1; 
+	  }
 	  
 	  while (allVertices.size() > 0) {
 		  int v = allVertices.get(0);
@@ -67,9 +70,10 @@ public class UnweightedGraph<V> implements Graph<V> {
 				  continue; 
 			  }
 			  else {
-				  for (int i = neighbors.get(x).size() - 1; i >= 0; i--) {
+				 // for (int i = neighbors.get(x).size() - 1 ; i > 0; i--) {
+				  for (int i = 0; i < neighbors.get(x).size(); i++) {
 					  Edge e = neighbors.get(x).get(i); 
-					  if(isVisited[e.v] == false) {
+					  if(!isVisited[e.v]) {
 						  parent[e.v] = x; 
 						  stack.push(e.v);
 						  isVisited[e.v] = true; 
@@ -78,6 +82,7 @@ public class UnweightedGraph<V> implements Graph<V> {
 						  break; 
 					  }
 					  else if (e.v != parent[x]) {
+						  
 						  List<Integer> list = new ArrayList<>(); 
 						  list.add(e.v);
 						  while (x != e.v && x != -1) {
@@ -92,9 +97,10 @@ public class UnweightedGraph<V> implements Graph<V> {
 				  }
 			  }
 		  }
-	  }
-	  return null; 
+	  } 
+	  return null;
   }
+  
   
   /** Create adjacency lists for each vertex */
   private void createAdjacencyLists(
