@@ -40,7 +40,8 @@ public class Exercise33_01Server extends Application {
 		Loan loan = new Loan(annualInterestRate, numberOfYears, loanAmount); 
 		
 		out.writeDouble(loan.getMonthlyPayment());
-		out.writeDouble(loan.getTotalPayment()); 
+		out.writeDouble(loan.getTotalPayment());
+		out.flush();
 		
 		Platform.runLater(() -> {
 			ta.appendText("Annual Interest received from client: " + annualInterestRate + '\n'); 
