@@ -47,6 +47,7 @@ public class Exercise33_01Client extends Application {
 				out.writeDouble(AnnualInterestRate);
 				out.writeInt(NumOfYears);
 				out.writeDouble(LoanAmount);
+				out.flush();
 				
 				double Monthly = in.readDouble();
 				double total = in.readDouble();
